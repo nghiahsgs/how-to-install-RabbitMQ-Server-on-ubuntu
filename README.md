@@ -34,3 +34,17 @@ Password: guest
 Port: 5672
 ```
 ## Step 6: Add connection string to pika
+```
+import pika
+def create_connection(host,port,username,password):
+    credentials = pika.PlainCredentials(username, password)
+    parameters  = pika.ConnectionParameters(host=host,port =port,credentials =credentials)
+    connection = pika.BlockingConnection(parameters)
+    return connection
+
+host = 'ip_vps'
+port = 5672
+username = 'guest'
+password = 'guest'
+connection = create_connection(host,port,username,password)
+```
