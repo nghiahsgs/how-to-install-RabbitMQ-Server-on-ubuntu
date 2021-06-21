@@ -2,47 +2,35 @@
 how to install RabbitMQ Server on ubuntu
 
 
-## STEP 1: Install Erlang
+## Step 1: Install docker
 ```
-https://github.com/nghiahsgs/how-to-install-erlang-ubuntu
-```
-
-## STEP 2: Add RabbitMQ Repository to Ubuntu
-```
-sudo apt update && sudo apt install wget -y
-sudo apt install apt-transport-https -y
-wget -O- https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.asc | sudo apt-key add -
-wget -O- https://www.rabbitmq.com/rabbitmq-release-signing-key.asc | sudo apt-key add -
+http://nghiahsgs.com/cai-dat-va-su-dung-docker-co-ban-tren-ubuntu-server/#comment-1152
 ```
 
+## Step 2: Pull image
 ```
-echo "deb https://dl.bintray.com/rabbitmq-erlang/debian focal erlang-22.x" | sudo tee /etc/apt/sources.list.d/rabbitmq.list
-```
-
-## Step 3: Install RabbitMQ Server Ubuntu 20.04
-```
-sudo apt update
-sudo apt install rabbitmq-server
-```
-## Step 4: Check status RabbitMQ Server
-```
-systemctl status  rabbitmq-server.service
-systemctl is-enabled rabbitmq-server.service
-```
-enable rabbitmq-server
-```
-sudo systemctl enable rabbitmq-server
+docker pull rabbitmq:3-management
 ```
 
-## Step 5: Enable the RabbitMQ Management Dashboard
+## Step 3: Start docker image
 ```
-sudo rabbitmq-plugins enable rabbitmq_management
-sudo ufw allow proto tcp from any to any port 5672,15672
-http://[server IP|Hostname]:15672
-guest | guest 
+docker run -d -p 15672:15672 -p 5672:5672 --name rabbit-test-for-medium rabbitmq:3-management
 ```
 
-## ref
+15672: port of rabbit management
+5672: port rabbit mq
+
+## Step 4: Check service is running
 ```
-https://computingforgeeks.com/how-to-install-latest-rabbitmq-server-on-ubuntu-linux/
+docker ps
+http://your_ip:15672/#/
+guest:guest
 ```
+## Step 5: Check service is running
+```
+HostName: your_ip
+UserName: guest
+Password: guest
+Port: 5672
+```
+## Step 6: Add connection string to pika
