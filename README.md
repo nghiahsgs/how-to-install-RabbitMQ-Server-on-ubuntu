@@ -44,8 +44,8 @@ def create_connection(host,port,username,password):
 
 host = 'ip_vps'
 port = 5672
-username = 'guest'
-password = 'guest'
+username = 'nghiahsgs4'
+password = '261997'
 connection = create_connection(host,port,username,password)
 ```
 Note: user and password can create and change in rabbit management
