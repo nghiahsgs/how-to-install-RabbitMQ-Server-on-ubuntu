@@ -48,3 +48,4 @@ username = 'guest'
 password = 'guest'
 connection = create_connection(host,port,username,password)
 ```
+Note: user and password can create and change in rabbit management
