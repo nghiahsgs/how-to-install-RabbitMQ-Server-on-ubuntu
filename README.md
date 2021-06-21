@@ -34,7 +34,7 @@ Password: guest
 Port: 5672
 ```
 ## Step 6: Add connection string to pika
-```
+```python
 import pika
 def create_connection(host,port,username,password):
     credentials = pika.PlainCredentials(username, password)
